@@ -10,11 +10,11 @@ class MapScreen extends StatefulWidget {
       longitude: -122.084,
       address: '',
     ),
-    this.isSelectiong = true,
+    this.isSelection = true,
   });
 
   final PlaceLocation location;
-  final bool isSelectiong;
+  final bool isSelection;
 
   @override
   State<MapScreen> createState() {
@@ -30,10 +30,10 @@ class _MapScreenState extends State<MapScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          widget.isSelectiong ? 'Pick your location' : 'Your location',
+          widget.isSelection ? 'Pick your location' : 'Your location',
         ),
         actions: [
-          if (widget.isSelectiong)
+          if (widget.isSelection)
             IconButton(
               onPressed: () {
                 Navigator.of(context).pop(_pickedLocation);
@@ -43,7 +43,7 @@ class _MapScreenState extends State<MapScreen> {
         ],
       ),
       body: GoogleMap(
-        onTap: widget.isSelectiong == false
+        onTap: widget.isSelection == false
             ? null
             : (position) {
                 setState(() {
@@ -57,7 +57,7 @@ class _MapScreenState extends State<MapScreen> {
           ),
           zoom: 16,
         ),
-        markers: (_pickedLocation == null && widget.isSelectiong == true)
+        markers: (_pickedLocation == null && widget.isSelection == true)
             ? {}
             : {
                 Marker(
